@@ -1,7 +1,15 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import styled from "styled-components";
+import Movie from "../components/Movie";
+import Loading from "../components/Loading";
 
+const List = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 100px);
+`;
 const GET_MOVIES = gql`
   query {
     movies {
@@ -11,11 +19,12 @@ const GET_MOVIES = gql`
   }
 `;
 export default () => {
-  const { loading, error, data } = useQuery(GET_MOVIES);
-  if (loading) {
-    return <h1>loading...</h1>;
-  }
-  if (data && data.movies) {
-    return data.movies.map((m) => <h1>{m.id}</h1>);
-  }
+  const { loading, data } = useQuery(GET_MOVIES);
+  return (
+    <List>
+      {loading && <Loading> Loading...</Loading>}
+      {data &&
+        data.movies.map((m) => <Movie key={m.id} id={m.id} {...m}></Movie>)}
+    </List>
+  );
 };
