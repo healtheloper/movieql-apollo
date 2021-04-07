@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const Item = styled.li`
   position: relative;
   height: 100%;
@@ -20,7 +20,9 @@ const Movie = ({ id, title, medium_cover_image }) => {
   return (
     <>
       <Item>
-        <Poster bg={`${medium_cover_image}`}></Poster>
+        <Link to={`/${id}`}>
+          <Poster bg={`${medium_cover_image}`}></Poster>
+        </Link>
         <Title length={title.length}>{title}</Title>
       </Item>
     </>

@@ -5,6 +5,9 @@ import styled from "styled-components";
 import Movie from "../components/Movie";
 import Loading from "../components/Loading";
 
+const Body = styled.div`
+  padding: 10px;
+`;
 const MoviesBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,43 +73,45 @@ const Home = () => {
   );
   return (
     <>
-      {loading ? <Loading>Loading...</Loading> : ""}
-      <MoviesBox>
-        {horrorLoading ? (
-          ""
-        ) : (
-          <GenresTitle>무더운 여름 공포로 채우기</GenresTitle>
-        )}
-        <List>
-          {horrorData?.movies_genre.map((m) => (
-            <Movie key={m.id} id={m.id} {...m}></Movie>
-          ))}
-        </List>
-      </MoviesBox>
-      <MoviesBox>
-        {dramaLoading ? (
-          ""
-        ) : (
-          <GenresTitle>드라마로 감성 충만해보기 어때요?</GenresTitle>
-        )}
-        <List>
-          {dramaData?.movies_genre.map((m) => (
-            <Movie key={m.id} id={m.id} {...m}></Movie>
-          ))}
-        </List>
-      </MoviesBox>
-      <MoviesBox>
-        {actionLoading ? (
-          ""
-        ) : (
-          <GenresTitle>짧고 가볍게, 스낵 콘텐츠!</GenresTitle>
-        )}
-        <List>
-          {actionData?.movies_genre.map((m) => (
-            <Movie key={m.id} id={m.id} {...m}></Movie>
-          ))}
-        </List>
-      </MoviesBox>
+      <Body>
+        {loading ? <Loading>Loading...</Loading> : ""}
+        <MoviesBox>
+          {horrorLoading ? (
+            ""
+          ) : (
+            <GenresTitle>무더운 여름 공포로 채우기</GenresTitle>
+          )}
+          <List>
+            {horrorData?.movies_genre.map((m) => (
+              <Movie key={m.id} id={m.id} {...m}></Movie>
+            ))}
+          </List>
+        </MoviesBox>
+        <MoviesBox>
+          {dramaLoading ? (
+            ""
+          ) : (
+            <GenresTitle>드라마로 감성 충만해보기 어때요?</GenresTitle>
+          )}
+          <List>
+            {dramaData?.movies_genre.map((m) => (
+              <Movie key={m.id} id={m.id} {...m}></Movie>
+            ))}
+          </List>
+        </MoviesBox>
+        <MoviesBox>
+          {actionLoading ? (
+            ""
+          ) : (
+            <GenresTitle>짧고 가볍게, 스낵 콘텐츠!</GenresTitle>
+          )}
+          <List>
+            {actionData?.movies_genre.map((m) => (
+              <Movie key={m.id} id={m.id} {...m}></Movie>
+            ))}
+          </List>
+        </MoviesBox>
+      </Body>
     </>
   );
 };
